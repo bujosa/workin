@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prueba de Google Maps</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="form.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Texto de atras</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cumque
+        inventore beatae officia autem quia incidunt error, esse necessitatibus
+        cum ab illo expedita doloremque quis, reiciendis quo sunt iste dicta
+        qui, temporibus repellendus ducimus praesentium. Reiciendis libero
+        labore consequatur, debitis voluptatibus, ipsa modi delectus aut nulla
+        pariatur autem, perferendis voluptas reprehenderit eius possimus ipsam
+        laborum minus aperiam numquam dicta assumenda cupiditate quam odio eum?
+        Consequuntur eum cum, blanditiis temporibus veritatis odit qui quam, at
+        nostrum, rerum assumenda doloremque sunt eos impedit reprehenderit animi
+        beatae modi! Officiis quaerat repellat enim, quam exercitationem, nam
+        minus voluptatem incidunt aliquam quo animi commodi ex, modi ullam.
+        Dolor, harum. Cum quis itaque amet qui sunt. Maiores alias dolore
+        dignissimos quae, necessitatibus distinctio eius numquam iste repellat
+        nostrum repellendus pariatur. At fuga similique fugit fugiat illo atque
+        ducimus, suscipit modi saepe numquam quidem qui ratione soluta dolorem
+        sunt velit labore dolores quae delectus enim! Beatae recusandae ducimus
+        tenetur sint incidunt iure dolor atque quo iusto esse omnis delectus
+        distinctio provident in corporis temporibus, maiores eum reprehenderit
+        ab nisi? Alias quam dolores esse sit veniam earum voluptatibus
+        voluptatem labore rerum distinctio, repellat aspernatur doloremque! Enim
+        quas explicabo iste libero in soluta possimus inventore quis non
+        assumenda! Harum!
+      </p>
+      <!-- 
+    <nav>
+      <ul>
+        <li>Logo</li>
+        <li><a href="#">Mis Denuncias</a></li>
+        <li><a href="#">Perfil</a></li>
+      </ul>
+    </nav>
+      <div id="map"></div> -->
+
+      <!-- <div class="btn-holder">
+        <button id="botonDenuncia">HACER DENUNCIA</button>
+      </div> -->
+
+      <button id="modal-btn" class="button">Click Here</button>
+
+      <div id="my-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Modal Header</h2>
+          </div>
+          <div class="modal-body">
+            <button>Close Modal</button>
+            <form action="#" class="modal">
+              <header>
+                <h2>Formulario para denuncias</h2>
+              </header>
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    Categoria de denuncia que va a realizar
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0"
+                        >Inconducta de un policia</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_1"
+                        name="Field5"
+                        type="radio"
+                        value="Second Choice"
+                        tabindex="6"
+                      />
+                      <label class="choice" for="Field5_1">Robo</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2"
+                        >Accidente de Transito</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2"
+                        >Drogas o sustancias prohibidas</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">Otros</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿La zona por la que transitaba estaba iluminada?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0">Si</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">No</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿De que manera usted se desplazaba?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0">A pie</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">En vehiculo</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <label class="desc" id="title1" for="Field1"
+                  >Hora del incidente
+                </label>
+                <div>
+                  <input
+                    id="Field1"
+                    name="Field1"
+                    type="time"
+                    class="field text fn"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="desc" id="title4" for="Field4">
+                  Informacion adicional
+                </label>
+
+                <div>
+                  <textarea
+                    id="Field4"
+                    name="Field4"
+                    spellcheck="true"
+                    rows="10"
+                    cols="50"
+                    tabindex="4"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <input
+                    id="saveForm"
+                    name="saveForm"
+                    type="submit"
+                    value="Confirmar"
+                    class="botonConfirmacion"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <h3>Modal Footer</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="map"></div>
+
+    <script>
+      // This example creates circles on the map, representing populations in North
+      // America.
+
+      // First, create an object containing LatLng and population for each city.
+
+      var citymap = {
+        intec: {
+          center: { lat: 18.487182, lng: -69.962732 },
+          population: 15,
+          type: 3
+        },
+        puya: {
+          center: { lat: 18.506964, lng: -69.937154 },
+          population: 12,
+          type: 1
+        },
+        altosarroyo: {
+          center: { lat: 18.503544, lng: -69.964365 },
+          population: 30,
+          type: 1
+        },
+        lopevega: {
+          center: { lat: 18.485393, lng: -69.932348 },
+          population: 25,
+          type: 3
+        },
+        canada: {
+          center: { lat: 18.495161, lng: -69.942476 },
+          population: 13,
+          type: 2
+        }
+      };
+
+      function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map
+        });
+        map.panTo(position);
+      }
+
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: { lat: 18.494184, lng: -69.944965 },
+          mapTypeId: "terrain"
+        });
+
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        for (let city in citymap) {
+          // Add the circle for this city to the map.
+          if (citymap[city].type === 3) {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#00FF00",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#00FF00",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          } else if (citymap[city].type === 2) {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#FFFF00",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FFFF00",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          } else {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FF0000",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          }
+          cityCircle.addListener("click", e => {
+            console.log("probando esto", this);
+          });
+          // console.log(cityCircle);
+        }
+        map.addListener("click", function(e) {
+          placeMarker(e.latLng, map);
+        });
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhg38t3Ager33HbnkI7PwW80GK564F2PQ&callback=initMap"
+    ></script>
+  </body>
+</html>
