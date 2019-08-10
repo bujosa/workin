@@ -6,8 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Prueba de Google Maps</title>
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="form.css" />
   </head>
   <body>
+    <div class="container">
+      <h2>Texto de atras</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit cumque
+        inventore beatae officia autem quia incidunt error, esse necessitatibus
+        cum ab illo expedita doloremque quis, reiciendis quo sunt iste dicta
+        qui, temporibus repellendus ducimus praesentium. Reiciendis libero
+        labore consequatur, debitis voluptatibus, ipsa modi delectus aut nulla
+        pariatur autem, perferendis voluptas reprehenderit eius possimus ipsam
+        laborum minus aperiam numquam dicta assumenda cupiditate quam odio eum?
+        Consequuntur eum cum, blanditiis temporibus veritatis odit qui quam, at
+        nostrum, rerum assumenda doloremque sunt eos impedit reprehenderit animi
+        beatae modi! Officiis quaerat repellat enim, quam exercitationem, nam
+        minus voluptatem incidunt aliquam quo animi commodi ex, modi ullam.
+        Dolor, harum. Cum quis itaque amet qui sunt. Maiores alias dolore
+        dignissimos quae, necessitatibus distinctio eius numquam iste repellat
+        nostrum repellendus pariatur. At fuga similique fugit fugiat illo atque
+        ducimus, suscipit modi saepe numquam quidem qui ratione soluta dolorem
+        sunt velit labore dolores quae delectus enim! Beatae recusandae ducimus
+        tenetur sint incidunt iure dolor atque quo iusto esse omnis delectus
+        distinctio provident in corporis temporibus, maiores eum reprehenderit
+        ab nisi? Alias quam dolores esse sit veniam earum voluptatibus
+        voluptatem labore rerum distinctio, repellat aspernatur doloremque! Enim
+        quas explicabo iste libero in soluta possimus inventore quis non
+        assumenda! Harum!
+      </p>
+      <!-- 
     <nav>
       <ul>
         <li>Logo</li>
@@ -15,81 +43,225 @@
         <li><a href="#">Perfil</a></li>
       </ul>
     </nav>
-    <div class="contenedor">
-      <div id="map"></div>
-    </div>
-    <div class="formulario">
-      <form action="">
-        <div>
-          <label for="msg">Categoria del incidente:</label><br />
-          <input type="radio" id="categoriaIncoducta" name="categoria" />
-          Inconducta de un policia
-          <input type="radio" id="categoriaRobo" name="categoria" /> Robo
-          <input type="radio" id="categoriaAccidente" name="categoria" />
-          Accidente de Transito
-          <input type="radio" id="categoriaDrogas" name="categoria" /> Drogas o
-          sustancias prohibidas
-          <input type="radio" id="categoriaOtros" name="categoria" /> Otros
-        </div>
-        <div>
-          <label for="iluminacion">Iluminacion:</label> <br />
-          <input type="radio" id="iluminacionSi" name="iluminacionRadio" /> Si
-          <input type="radio" id="iluminacionNo" name="iluminacionRadio" /> No
-        </div>
-        <div>
-          <label for="desplazamiento">Usted se desplazaba:</label> <br />
-          <input
-            type="radio"
-            id="desplazamientoPie"
-            name="desplazamientoRadio"
-          />
-          A Pie
-          <input
-            type="radio"
-            id="desplazamientoVehiculo"
-            name="desplazamientoRadio"
-          />
-          Auto
-        </div>
-        <div>
-          <label for="mail">E-mail:</label><br />
-          <input type="email" id="mail" name="user_mail" />
-        </div>
+      <div id="map"></div> -->
 
-        <div>
-          <label for="Elementos Atraco">
-            Elementos utilizados por el/los atracadores</label
-          >
-          <br />
-          <input type="checkbox" name="elementoCarro" value="Carro" />
-          <label for="Carro"> Carro </label>
-          <input type="checkbox" name="elementoMotor" value="Motor" />
-          <label for="Motor"> Motor </label>
-          <br />
+      <!-- <div class="btn-holder">
+        <button id="botonDenuncia">HACER DENUNCIA</button>
+      </div> -->
 
-          <input
-            type="checkbox"
-            name="elementoArmaBlanca"
-            value="Arma Blanca"
-          />
-          <label for="ArmaBlanca"> Arma Blanca </label>
-          <input
-            type="checkbox"
-            name="elementoArmaFuego"
-            value="Arma de Fuego"
-          />
-          <label for="ArmaFuego"> Arma de Fuego </label>
+      <button id="modal-btn" class="button">Click Here</button>
+
+      <div id="my-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <span class="close">&times;</span>
+            <h2>Modal Header</h2>
+          </div>
+          <div class="modal-body">
+            <button>Close Modal</button>
+            <form action="#" class="modal">
+              <header>
+                <h2>Formulario para denuncias</h2>
+              </header>
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    Categoria de denuncia que va a realizar
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0"
+                        >Inconducta de un policia</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_1"
+                        name="Field5"
+                        type="radio"
+                        value="Second Choice"
+                        tabindex="6"
+                      />
+                      <label class="choice" for="Field5_1">Robo</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2"
+                        >Accidente de Transito</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2"
+                        >Drogas o sustancias prohibidas</label
+                      >
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">Otros</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿La zona por la que transitaba estaba iluminada?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0">Si</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">No</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿De que manera usted se desplazaba?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="Field5"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="Field5"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        checked="checked"
+                      />
+                      <label class="choice" for="Field5_0">A pie</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="Field5"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">En vehiculo</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <label class="desc" id="title1" for="Field1"
+                  >Hora del incidente
+                </label>
+                <div>
+                  <input
+                    id="Field1"
+                    name="Field1"
+                    type="time"
+                    class="field text fn"
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="desc" id="title4" for="Field4">
+                  Informacion adicional
+                </label>
+
+                <div>
+                  <textarea
+                    id="Field4"
+                    name="Field4"
+                    spellcheck="true"
+                    rows="10"
+                    cols="50"
+                    tabindex="4"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div>
+                <div>
+                  <input
+                    id="saveForm"
+                    name="saveForm"
+                    type="submit"
+                    value="Confirmar"
+                    class="botonConfirmacion"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <h3>Modal Footer</h3>
+          </div>
         </div>
-        <div>
-          <label for="msg">Informacion adicional:</label><br />
-          <textarea id="msg" name="user_message"></textarea>
-        </div>
-        <div>
-          <button>Confirmar</button>
-        </div>
-      </form>
+      </div>
     </div>
-    <button id="botonDenuncia">HACER DENUNCIA</button>
     <script>
       // This example creates circles on the map, representing populations in North
       // America.
