@@ -262,60 +262,110 @@
         </div>
       </div>
     </div>
+    <div id="map"></div>
+
     <script>
       // This example creates circles on the map, representing populations in North
       // America.
 
       // First, create an object containing LatLng and population for each city.
+
       var citymap = {
-        chicago: {
-          center: { lat: 41.878, lng: -87.629 },
-          population: 2714856
+        intec: {
+          center: { lat: 18.487182, lng: -69.962732 },
+          population: 15,
+          type: 3
         },
-        newyork: {
-          center: { lat: 40.714, lng: -74.005 },
-          population: 8405837
+        puya: {
+          center: { lat: 18.506964, lng: -69.937154 },
+          population: 12,
+          type: 1
         },
-        losangeles: {
-          center: { lat: 34.052, lng: -118.243 },
-          population: 3857799
+        altosarroyo: {
+          center: { lat: 18.503544, lng: -69.964365 },
+          population: 30,
+          type: 1
         },
-        vancouver: {
-          center: { lat: 49.25, lng: -123.1 },
-          population: 603502
+        lopevega: {
+          center: { lat: 18.485393, lng: -69.932348 },
+          population: 25,
+          type: 3
+        },
+        canada: {
+          center: { lat: 18.495161, lng: -69.942476 },
+          population: 13,
+          type: 2
         }
       };
 
-      //   function initMap() {
-      //     // Create the map.
-      //     var map = new google.maps.Map(document.getElementById("map"), {
-      //       zoom: 4,
-      //       center: { lat: 37.09, lng: -95.712 },
-      //       mapTypeId: "terrain"
-      //     });
+      function placeMarker(position, map) {
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map
+        });
+        map.panTo(position);
+      }
 
-      //     // Construct the circle for each value in citymap.
-      //     // Note: We scale the area of the circle based on the population.
-      //     for (var city in citymap) {
-      //       // Add the circle for this city to the map.
-      //       var cityCircle = new google.maps.Circle({
-      //         strokeColor: "#FF0000",
-      //         strokeOpacity: 0.8,
-      //         strokeWeight: 2,
-      //         fillColor: "#FF0000",
-      //         fillOpacity: 0.35,
-      //         map: map,
-      //         center: citymap[city].center,
-      //         radius: Math.sqrt(citymap[city].population) * 100
-      //       });
-      //     }
-      //   }
+      function initMap() {
+        // Create the map.
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: { lat: 18.494184, lng: -69.944965 },
+          mapTypeId: "terrain"
+        });
+
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        for (let city in citymap) {
+          // Add the circle for this city to the map.
+          if (citymap[city].type === 3) {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#00FF00",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#00FF00",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          } else if (citymap[city].type === 2) {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#FFFF00",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FFFF00",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          } else {
+            var cityCircle = new google.maps.Circle({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FF0000",
+              fillOpacity: 0.35,
+              map: map,
+              center: citymap[city].center,
+              radius: Math.sqrt(citymap[city].population) * 100
+            });
+          }
+          cityCircle.addListener("click", e => {
+            console.log("probando esto", this);
+          });
+          // console.log(cityCircle);
+        }
+        map.addListener("click", function(e) {
+          placeMarker(e.latLng, map);
+        });
+      }
     </script>
-    <!-- <script
+    <script
       async
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhg38t3Ager33HbnkI7PwW80GK564F2PQ&callback=initMap"
-    ></script> -->
-    <script src="main.js"></script>
+    ></script>
   </body>
 </html>
