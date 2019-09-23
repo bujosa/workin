@@ -4,6 +4,30 @@ const modalBtn = document.querySelector("#modal-btn");
 const closeBtn = document.querySelector(".close");
 const saveBtn = document.querySelector("#saveForm");
 let horaIncidente, categoriaIncidente, fechaIncidente, contentString;
+
+//Hide all markers
+let hideAllInfoWindows = map => {
+  markers.forEach(marker => {
+    marker.infowindow.close(map, marker);
+  });
+  infowindows.forEach(e => {
+    e.close();
+  });
+};
+
+// Open
+let openModal = () => (modal.style.display = "block");
+
+// Close
+let closeModal = () => (modal.style.display = "none");
+
+// Close If Outside Click
+let outsideClick = e => {
+  if (e.target == modal) {
+    modal.style.display = "none";
+  }
+};
+
 // Events
 modalBtn.addEventListener("click", openModal);
 closeBtn.addEventListener("click", closeModal);
@@ -34,41 +58,17 @@ saveBtn.addEventListener("click", e => {
       hideAllInfoWindows(map);
       this.infowindow.open(map, this);
     });
-
+    infowindows.push(infowindow);
     google.maps.event.clearInstanceListeners(map);
 
     let entradas = document.querySelectorAll("input");
 
-    for (let i in entradas) {
+    entradas.forEach(i => {
       if (entradas[i].type === "radio") entradas[i].checked = false;
       else {
         if (entradas[i].type !== "submit") entradas[i].value = "";
       }
-    }
+    });
     document.querySelector("textarea").value = "";
   });
 });
-
-//Hide all markers
-function hideAllInfoWindows(map) {
-  markers.forEach(function(marker) {
-    marker.infowindow.close(map, marker);
-  });
-}
-
-// Open
-function openModal() {
-  modal.style.display = "block";
-}
-
-// Close
-function closeModal() {
-  modal.style.display = "none";
-}
-
-// Close If Outside Click
-function outsideClick(e) {
-  if (e.target == modal) {
-    modal.style.display = "none";
-  }
-}

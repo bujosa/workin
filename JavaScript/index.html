@@ -212,42 +212,47 @@
 
       // First, create an object containing LatLng and population for each city.
       let markers = [];
-      var map, currentMarker;
+      var map, currentMarker, geocoder;
       let infowindows = [];
-      var citymap = {
-        intec: {
+      var citymap = [
+        {
+          name: "intec",
           center: { lat: 18.487182, lng: -69.962732 },
           population: 15,
           type: 1,
           texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
         },
-        puya: {
+        {
+          name: "puya",
           center: { lat: 18.506964, lng: -69.937154 },
           population: 12,
           type: 3,
           texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> atracos </b> y ocurren mayormente de <b>10:00-12:00PM</b>.</p><b>Recomendaciones:</b>No transite por estas zonas en las horas especificadas o de ser necesario ande con mas personas.<p>`
         },
-        altosarroyo: {
+        {
+          name: "Altos Arroyo",
           center: { lat: 18.503544, lng: -69.964365 },
           population: 30,
           type: 3,
           texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> los robos </b> y ocurren mayormente de <b>6:00-8:00PM</b>.</p><b>Recomendaciones:</b>Procure no usar prendas valiosas por esta zona.<p>`
         },
-        lopevega: {
+        {
+          name: "Lope de Vega",
           center: { lat: 18.485393, lng: -69.932348 },
           population: 25,
           type: 1,
           texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
         },
-        viejoarroyo: {
+        {
+          name: "Viejo arroyo",
           center: { lat: 18.495161, lng: -69.942476 },
           population: 13,
           type: 2,
           texto: `<h4>Nivel de peligro: ${2}</h4><p>En esta zona la cantidad de  denuncias es <b> media </b>. Los incidentes relacionados con <b>drogas</b> estan incrementando y ocurren mayormente de <b>6:00-8:00PM</b>.</p><p><b>Recomendaciones:</b>De ser posible no transite mucho por esta zona en las horas especificadas.</p>`
         }
-      };
+      ];
 
-      function placeMarker(position, map, info) {
+      let placeMarker = (position, map, info) => {
         var marcador = new google.maps.Marker({
           position: position,
           map: map,
@@ -257,24 +262,55 @@
         map.panTo(position);
         markers.push(marcador);
         return marcador;
-      }
+      };
 
-      function initMap() {
+      let geocoding = obj => {
+        geocoder.geocode({ location: obj.center }, function(results, status) {
+          debugger;
+          if (status === "OK") {
+            if (results[0]) {
+              // map.setZoom(11);
+              // var marker = new google.maps.Marker({
+              //   position: latlng,
+              //   map: map
+              // });
+              // infowindow.setContent(results[0].formatted_address);
+              return results[0].formatted_address;
+
+              // infowindow.open(map, marker);
+            } else {
+              return "Not found";
+              // window.alert('No results found');
+            }
+          } else {
+            //window.alert('Geocoder failed due to: ' + status);
+            return "Error";
+          }
+        });
+      };
+
+      let initMap = () => {
         // Create the map.
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 14,
           center: { lat: 18.494184, lng: -69.944965 },
           mapTypeId: "terrain"
         });
-
+        geocoder = new google.maps.Geocoder();
         // Construct the circle for each value in citymap.
         // Note: We scale the area of the circle based on the population.
-        for (let city in citymap) {
+        citymap.forEach(city => {
+          // console.log(city);
+          debugger;
+          console.log(`
+          City: ${city.name}
+          Address: ${geocoding(city)}
+          `);
           // Add the circle for this city to the map.
           let color = "";
-          if (citymap[city].type === 1) {
+          if (city.type === 1) {
             color = "#00FF00";
-          } else if (citymap[city].type === 2) {
+          } else if (city.type === 2) {
             color = "#FFFF00";
           } else {
             color = "#FF0000";
@@ -287,14 +323,12 @@
             clickable: true,
             fillOpacity: 0.35,
             map: map,
-            center: citymap[city].center,
-            radius: Math.sqrt(citymap[city].population) * 100,
-            texto: citymap[city].texto
+            center: city.center,
+            radius: Math.sqrt(city.population) * 100,
+            texto: city.texto
           });
 
           google.maps.event.addListener(cityCircle, "click", function(ev) {
-            // console.log(circles);
-            // hideAllInfoWindows(map);
             let contentString = ` <p>${this.texto}</p>`;
             let infowindow = new google.maps.InfoWindow({
               content: contentString
@@ -306,8 +340,8 @@
             });
             infowindows.push(infowindow);
           });
-        }
-      }
+        });
+      };
     </script>
     <script
       async
