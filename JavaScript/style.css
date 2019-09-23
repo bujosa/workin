@@ -78,6 +78,10 @@ body {
   justify-content: center;
 }
 
+#my-modal {
+  display: none;
+}
+
 .button {
   background: beige;
   padding: 1em 2em;

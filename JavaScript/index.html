@@ -213,6 +213,7 @@
       // First, create an object containing LatLng and population for each city.
       let markers = [];
       var map, currentMarker;
+      let infowindows = [];
       var citymap = {
         intec: {
           center: { lat: 18.487182, lng: -69.962732 },
@@ -294,13 +295,15 @@
           google.maps.event.addListener(cityCircle, "click", function(ev) {
             // console.log(circles);
             // hideAllInfoWindows(map);
-            let contentString = `
-            <p>${this.texto}</p>`;
+            let contentString = ` <p>${this.texto}</p>`;
             let infowindow = new google.maps.InfoWindow({
               content: contentString
             });
             infowindow.setPosition(ev.latLng);
             infowindow.open(map);
+            infowindows.forEach(e => {
+              e.close();
+            });
             infowindows.push(infowindow);
           });
         }

@@ -30,7 +30,6 @@ saveBtn.addEventListener("click", e => {
 
   map.addListener("click", function(e) {
     let res = placeMarker(e.latLng, map, infowindow);
-
     google.maps.event.addListener(res, "click", function() {
       hideAllInfoWindows(map);
       this.infowindow.open(map, this);
@@ -55,9 +54,6 @@ function hideAllInfoWindows(map) {
   markers.forEach(function(marker) {
     marker.infowindow.close(map, marker);
   });
-  // infowindows.forEach(win => {
-  //   win.close(map, win);
-  // });
 }
 
 // Open
