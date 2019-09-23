@@ -3,10 +3,10 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+/* 
 body {
   padding: 20px 15%;
-}
+} */
 form header {
   margin: 0 0 20px 0;
 }
@@ -73,12 +73,18 @@ textarea:focus {
 
 .botonConfirmacion {
   width: 100%;
-  background: bisque;
-  color: black;
+  background: #373879;
+  color: #ebebeb;
   border: none;
   padding: 1em;
   text-transform: uppercase;
   letter-spacing: 0.25em;
+}
+
+@media (max-width: 800px) {
+  .modal-content {
+    width: 80%;
+  }
 }
 
 @media (max-width: 600px) {
@@ -103,6 +109,9 @@ textarea:focus {
   textarea,
   select {
     width: 100%;
+  }
+  .modal-content {
+    width: 80%;
   }
 }
 @media (min-width: 1200px) {

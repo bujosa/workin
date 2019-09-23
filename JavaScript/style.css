@@ -3,10 +3,13 @@
  * element that contains the map. */
 .contenedor {
   width: 100vw;
-  height: 85vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 #map {
   height: 100%;
+  flex-grow: 2;
 }
 /* Optional: Makes the sample page fill the window. */
 html,
@@ -17,14 +20,9 @@ body {
   font-family: "Roboto", sans-serif;
 }
 
-ul {
-  list-style: none;
+nav {
   display: flex;
   justify-content: space-around;
-  background-color: #1f9ecc;
-  padding: 1em;
-  text-transform: uppercase;
-  margin: 0;
 }
 
 a {
@@ -81,12 +79,16 @@ body {
 }
 
 .button {
-  background: #428bca;
+  background: beige;
   padding: 1em 2em;
-  color: #fff;
+  color: #333;
   border: 0;
   border-radius: 5px;
+  font-weight: 700;
   cursor: pointer;
+  text-transform: uppercase;
+  margin: 0 auto;
+  width: 25vw;
 }
 
 .button:hover {
@@ -94,7 +96,6 @@ body {
 }
 
 .modal {
-  display: none;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -111,6 +112,7 @@ body {
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
+  background-color: #fff;
 }
 
 .modal-header h2,
@@ -141,10 +143,13 @@ body {
 }
 
 .close {
-  color: #ccc;
+  color: #f4f4f4;
   float: right;
-  font-size: 30px;
-  color: #fff;
+  font-size: 24px;
+  background-color: #1f9ecc;
+  border: none;
+  border-radius: 5px;
+  padding: 0.3em;
 }
 
 .close:hover,
