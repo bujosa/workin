@@ -11,8 +11,7 @@ CREATE TABLE Usuarios
 	Email VARCHAR(50) NOT NULL UNIQUE,
 	Telefono CHAR(10) NOT NULL,
     Genero char(1) NOT NULL,
-	Codigo int NOT NULL,
-	Activar bit default 0
+	Direccion varchar(100) NOT NULL,
 );
 
 CREATE TABLE Categorias
