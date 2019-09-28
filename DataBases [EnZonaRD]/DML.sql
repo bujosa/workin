@@ -1,10 +1,10 @@
 USE EnZonaRD
 
-INSERT [dbo].[Categoria] ([Categoria]) VALUES (N'Atraco')
-INSERT [dbo].[Categoria] ([Categoria]) VALUES (N'Robo')
-INSERT [dbo].[Categoria] ([Categoria]) VALUES (N'Homicidio')
+INSERT [dbo].[Categorias] ([Categoria]) VALUES (N'Atraco')
+INSERT [dbo].[Categorias] ([Categoria]) VALUES (N'Robo')
+INSERT [dbo].[Categorias] ([Categoria]) VALUES (N'Homicidio')
 
-INSERT [dbo].[Delitos] ([IdCategoria], [Id_Locacion], [FECHA], [HORA], [Descripcion], [ModeDeTransporte]) 
+INSERT [dbo].[Delitos] ([IdCategoria], [Id_Locacion], [Fecha], [Hora], [Descripcion], [Modo]) 
 VALUES (1, 1, CAST(N'2019-09-27' AS Date), CAST(N'19:13:47.8170000' AS Time), N'Me atracaron con una pistola en la noche y me quitaron Tokyo', N'Pasola')
 
 INSERT [dbo].[Locaciones] ([IdUsuario], [Longitud], [Latitud]) 

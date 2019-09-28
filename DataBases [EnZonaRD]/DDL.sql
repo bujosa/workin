@@ -15,7 +15,7 @@ CREATE TABLE Usuarios
 	Activar bit default 0
 );
 
-CREATE TABLE Categoria
+CREATE TABLE Categorias
 (
     IdCategoria INT PRIMARY KEY IDENTITY,
    	Categoria VARCHAR(50) NOT NULL,
@@ -32,12 +32,12 @@ CREATE TABLE Locaciones
 CREATE TABLE Delitos
 (
     IdDelitos INT PRIMARY KEY IDENTITY,
-    IdCategoria INT FOREIGN KEY REFERENCES Categoria(IdCategoria),
+    IdCategoria INT FOREIGN KEY REFERENCES Categorias(IdCategoria),
     Id_Locacion INT FOREIGN KEY REFERENCES Locaciones(IdLocacion),
-    FECHA DATE Default(CONVERT (date,GETDATE())), 
-	HORA TIME  Default(CONVERT (time, GETDATE())),  
+    Fecha DATE Default(CONVERT (date,GETDATE())), 
+	Hora TIME  Default(CONVERT (time, GETDATE())),  
     Descripcion VARCHAR(300),
-	ModeDeTransporte VARCHAR(50),
+	Modo VARCHAR(50),
 );
 
 
