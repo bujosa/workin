@@ -13,14 +13,31 @@ import (
 	_ "github.com/rs/cors"
 )
 
+/*
+func setupResponse(w *http.ResponseWriter, req *http.Request) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+    (*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+    (*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+}
+
+func indexHandler(w http.ResponseWriter, req *http.Request) {
+	setupResponse(&w, req)
+	if (*req).Method == "OPTIONS" {
+		return
+	}
+    // process the request...
+}
+*/
+
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+	(*w).Header().Set("Access-Control-Allow-Methods"," GET, POST, PUT, DELETE")
 }
 
 func Users(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
 
-	enableCors(&w)
+    enableCors(&w)
 
 	if err != nil {
 		fmt.Println(err)

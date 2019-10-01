@@ -4,6 +4,7 @@ import (
 	
 	"Backend/Entities"
 	"database/sql"
+	"log"
 )
 
 type CrimeModel struct {
@@ -52,20 +53,21 @@ func (crimemodel CrimeModel) FindAll() ([]entities.Crime, error) {
 
 func (crimemodel CrimeModel) CreateCrime(CrimeN entities.Crime) (int64, error) {
 
+	
 	var idloc int64
-	var locationmodel LocationModel
 
-	result2, err2 := locationmodel.Db.Query("select Top(1) IdLocacion from Locaciones order by IdLocacion desc")
+	result2, err2 := crimemodel.Db.Query("select Top(1) IdLocacion from Locaciones order by IdLocacion desc")
 
 	if err2 != nil {
 		return 0, err2
 	} else {
 		
 		for result2.Next() {
-			var id             int64 
+			var id   int64 
 	
 			err2 = result2.Scan(&id)
 			if err2 != nil {
+				log.Fatal("paso por aqui")
 				return 0, err2
 			} else {
 				
@@ -74,12 +76,14 @@ func (crimemodel CrimeModel) CreateCrime(CrimeN entities.Crime) (int64, error) {
 		}
 	
 	}
+	
 	result, err := crimemodel.Db.Exec("INSERT Delitos (IdCategoria,Id_Locacion,Fecha,Hora,Descripcion,Modo) values (?, ?, ?, ?, ?, ?)", 
 	CrimeN.Cat,idloc,CrimeN.Date,CrimeN.Time,CrimeN.Description,CrimeN.Mode)
 
 	CrimeN.Loc = idloc;
 	
 	if err != nil {
+		log.Fatal("Llego hasta aca")
 		return 0, err
 	} else {
 		CrimeN.Id,_ = result.LastInsertId() 
