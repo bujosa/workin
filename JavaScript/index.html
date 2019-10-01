@@ -336,6 +336,24 @@
         }
       };
 
+      let postData = async (datos = {}) => {
+        response = await fetch("http://localhost:8080/LocationAdd", {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(datos)
+        });
+      };
+
+      postData({
+        Id: 34,
+        User: 1,
+        Latitude: 200.492693,
+        Longitude: -69.884844
+      });
+
       function initMap() {
         // Create the map.
         map = new google.maps.Map(document.getElementById("map"), {
