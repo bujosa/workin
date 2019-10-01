@@ -134,6 +134,7 @@
     // First, create an object containing LatLng and population for each city.
     let markers = [];
     var map, currentMarker, geocoder;
+    let response, data;
     let infowindows = [];
     var citymap = [
       {
@@ -187,7 +188,6 @@
 
     let geocoding = obj => {
       geocoder.geocode({ location: obj.center }, function (results, status) {
-        // debugger;
         if (status === "OK") {
           if (results[0]) {
             // map.setZoom(11);
@@ -210,6 +210,36 @@
       });
     };
 
+  let displayData = (elements) => {
+    elements.forEach(e => {
+      let fechaIncidente = e.Date.substring(0, 10), horaIncidente = e.Time.substring(e.Time.indexOf('T') + 1, e.Time.indexOf('T') + 8);
+      console.log(`fechaIncidente: ${fechaIncidente} horaIncidente: ${horaIncidente}`);
+      let contentString = `
+        <b>Hora del incidente: </b> ${horaIncidente} <br />
+        <b>Fecha del incidente: </b> ${fechaIncidente}
+      `;
+      let infowindow = new google.maps.InfoWindow({
+            content: contentString
+      });
+      infowindow.setPosition({lat: e.Longitude, lng: e.Latitude});
+      
+      infowindow.open(map);
+     
+      infowindows.push(infowindow);
+    });
+  }
+
+  let getData = async () => {
+     response = await fetch("http://localhost:8080/Unions");
+    if (!response.ok) {
+      console.log("There was an error");
+    } else {
+      data = await response.json();
+      displayData(data);
+      //console.log(JSON.stringify(data));
+    }
+  };
+  
     function initMap() {
       // Create the map.
       map = new google.maps.Map(document.getElementById("map"), {
@@ -220,13 +250,13 @@
       geocoder = new google.maps.Geocoder();
       // Construct the circle for each value in citymap.
       // Note: We scale the area of the circle based on the population.
+      getData();
       citymap.forEach(city => {
         // console.log(city);
-        // debugger;
-        console.log(`
-          City: ${city.name}
-          Address: ${geocoding(city)}
-          `);
+        // console.log(`
+        //   City: ${city.name}
+        //   Address: ${geocoding(city)}
+        //   `);
         // Add the circle for this city to the map.
         let color = "";
         if (city.type === 1) {
