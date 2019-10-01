@@ -13,6 +13,7 @@
     <div class="contenedor">
       <nav>
         <img src="fondo.png" alt="Logo Pagina" width="250" height="60" />
+        <button id="loginPopup">Login with Popup</button>
       </nav>
       <div id="map"></div>
 
@@ -181,7 +182,7 @@
 
                 <div>
                   <textarea
-                    id="Field4"
+                    id="textoDescripcion"
                     name="informacion"
                     spellcheck="true"
                     rows="6"
@@ -207,6 +208,7 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.0/auth0-spa-js.production.js"></script>
     <script>
       // This example creates circles on the map, representing populations in North
       // America.
@@ -253,6 +255,22 @@
           texto: `<h4>Nivel de peligro: ${2}</h4><p>En esta zona la cantidad de  denuncias es <b> media </b>. Los incidentes relacionados con <b>drogas</b> estan incrementando y ocurren mayormente de <b>6:00-8:00PM</b>.</p><p><b>Recomendaciones:</b>De ser posible no transite mucho por esta zona en las horas especificadas.</p>`
         }
       ];
+
+      (async () => {
+        const auth0 = await createAuth0Client({
+          domain: "dev-t5s1tktr.auth0.com",
+          client_id: "Xk46zUCiQ0sA3lpTjuWkIrnB6N0yhzPY"
+        });
+
+        document
+          .getElementById("loginPopup")
+          .addEventListener("click", async () => {
+            console.log("Button was clicked");
+            await auth0.loginWithPopup();
+            const user = await auth0.getUser();
+            console.log(user);
+          });
+      })();
 
       let placeMarker = (position, map, info) => {
         var marcador = new google.maps.Marker({
@@ -336,24 +354,6 @@
         }
       };
 
-      let postData = async (datos = {}) => {
-        response = await fetch("http://localhost:8080/LocationAdd", {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(datos)
-        });
-      };
-
-      postData({
-        Id: 34,
-        User: 1,
-        Latitude: 200.492693,
-        Longitude: -69.884844
-      });
-
       function initMap() {
         // Create the map.
         map = new google.maps.Map(document.getElementById("map"), {
@@ -413,7 +413,6 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhg38t3Ager33HbnkI7PwW80GK564F2PQ&callback=initMap"
     ></script>
-
     <script src="main.js"></script>
   </body>
 </html>
