@@ -53,7 +53,9 @@ saveBtn.addEventListener("click", e => {
   });
 
   map.addListener("click", function(e) {
+    console.log(`Latitud: ${e.latLng.lat()}, Longitud: ${e.latLng.lng()}`);
     let res = placeMarker(e.latLng, map, infowindow);
+    debugger;
     google.maps.event.addListener(res, "click", function() {
       hideAllInfoWindows(map);
       this.infowindow.open(map, this);
@@ -61,7 +63,7 @@ saveBtn.addEventListener("click", e => {
     infowindows.push(infowindow);
     google.maps.event.clearInstanceListeners(map);
 
-    let entradas = document.querySelectorAll("input");
+    let entradas = Array.from(document.querySelectorAll("input"));
 
     entradas.forEach(i => {
       if (entradas[i].type === "radio") entradas[i].checked = false;

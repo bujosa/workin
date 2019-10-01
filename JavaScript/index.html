@@ -1,303 +1,401 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Prueba de Google Maps</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="form.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Prueba de Google Maps</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="form.css" />
-</head>
+  <body>
+    <div class="contenedor">
+      <nav>
+        <img src="fondo.png" alt="Logo Pagina" width="250" height="60" />
+      </nav>
+      <div id="map"></div>
 
-<body>
-  <div class="contenedor">
-    <nav>
-      <img src="fondo.png" alt="Logo Pagina" width="250" height="60" />
-    </nav>
-    <div id="map"></div>
+      <button id="modal-btn" class="button">Hacer Denuncia</button>
 
-    <button id="modal-btn" class="button">Hacer Denuncia</button>
+      <div id="my-modal" class="modal">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button class="close">Cerrar</button>
+            <form action="#">
+              <header>
+                <h2>Formulario para denuncias</h2>
+              </header>
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    Categoria de denuncia que va a realizar
+                  </legend>
 
-    <div id="my-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-body">
-          <button class="close">Cerrar</button>
-          <form action="#">
-            <header>
-              <h2>Formulario para denuncias</h2>
-            </header>
-            <div>
-              <fieldset>
-                <legend id="title5" class="desc">
-                  Categoria de denuncia que va a realizar
-                </legend>
+                  <div>
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="categoria"
+                        type="radio"
+                        value="Homicidio"
+                        tabindex="5"
+                        checked
+                        required
+                      />
+                      <label class="choice" for="Field5_0">Homicidio</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_1"
+                        name="categoria"
+                        type="radio"
+                        value="Robo"
+                        tabindex="6"
+                      />
+                      <label class="choice" for="Field5_1">Robo</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="categoria"
+                        type="radio"
+                        value="Asalto"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">Asalto</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿La zona por la que transitaba estaba iluminada?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="zona"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="zona"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        required
+                      />
+                      <label class="choice" for="Field5_0">Si</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="zona"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">No</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    ¿De que manera usted se desplazaba?
+                  </legend>
+
+                  <div>
+                    <input
+                      id="radioDefault_5"
+                      name="desplazamiento"
+                      type="hidden"
+                      value=""
+                    />
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="desplazamiento"
+                        type="radio"
+                        value="First Choice"
+                        tabindex="5"
+                        required
+                      />
+                      <label class="choice" for="Field5_0">A pie</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="desplazamiento"
+                        type="radio"
+                        value="Third Choice"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">En vehiculo</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <label class="desc" id="title1" for="Field1"
+                  >Fecha del incidente
+                </label>
+                <div>
+                  <input
+                    id="Field1"
+                    name="fecha"
+                    type="date"
+                    class="field text fn"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="desc" id="title1" for="Field1"
+                  >Hora del incidente
+                </label>
+                <div>
+                  <input
+                    id="Field1"
+                    name="hora"
+                    type="time"
+                    class="field text fn"
+                    required
+                  />
+                </div>
+              </div>
+              <div>
+                <label class="desc" id="title4" for="Field4">
+                  Informacion adicional
+                </label>
 
                 <div>
-                  <div>
-                    <input id="Field5_0" name="categoria" type="radio" value="Homicidio" tabindex="5" checked
-                      required />
-                    <label class="choice" for="Field5_0">Homicidio</label>
-                  </div>
-                  <div>
-                    <input id="Field5_1" name="categoria" type="radio" value="Robo" tabindex="6" />
-                    <label class="choice" for="Field5_1">Robo</label>
-                  </div>
-                  <div>
-                    <input id="Field5_2" name="categoria" type="radio" value="Asalto" tabindex="7" />
-                    <label class="choice" for="Field5_2">Asalto</label>
-                  </div>
+                  <textarea
+                    id="Field4"
+                    name="informacion"
+                    spellcheck="true"
+                    rows="6"
+                    cols="50"
+                    tabindex="4"
+                  ></textarea>
                 </div>
-              </fieldset>
-            </div>
+              </div>
 
-            <div>
-              <fieldset>
-                <legend id="title5" class="desc">
-                  ¿La zona por la que transitaba estaba iluminada?
-                </legend>
-
+              <div>
                 <div>
-                  <input id="radioDefault_5" name="zona" type="hidden" value="" />
-                  <div>
-                    <input id="Field5_0" name="zona" type="radio" value="First Choice" tabindex="5" required />
-                    <label class="choice" for="Field5_0">Si</label>
-                  </div>
-                  <div>
-                    <input id="Field5_2" name="zona" type="radio" value="Third Choice" tabindex="7" />
-                    <label class="choice" for="Field5_2">No</label>
-                  </div>
+                  <input
+                    id="saveForm"
+                    name="saveForm"
+                    type="submit"
+                    value="Confirmar"
+                    class="botonConfirmacion"
+                  />
                 </div>
-              </fieldset>
-            </div>
-
-            <div>
-              <fieldset>
-                <legend id="title5" class="desc">
-                  ¿De que manera usted se desplazaba?
-                </legend>
-
-                <div>
-                  <input id="radioDefault_5" name="desplazamiento" type="hidden" value="" />
-                  <div>
-                    <input id="Field5_0" name="desplazamiento" type="radio" value="First Choice" tabindex="5"
-                      required />
-                    <label class="choice" for="Field5_0">A pie</label>
-                  </div>
-                  <div>
-                    <input id="Field5_2" name="desplazamiento" type="radio" value="Third Choice" tabindex="7" />
-                    <label class="choice" for="Field5_2">En vehiculo</label>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-
-            <div>
-              <label class="desc" id="title1" for="Field1">Fecha del incidente
-              </label>
-              <div>
-                <input id="Field1" name="fecha" type="date" class="field text fn" required />
               </div>
-            </div>
-
-            <div>
-              <label class="desc" id="title1" for="Field1">Hora del incidente
-              </label>
-              <div>
-                <input id="Field1" name="hora" type="time" class="field text fn" required />
-              </div>
-            </div>
-            <div>
-              <label class="desc" id="title4" for="Field4">
-                Informacion adicional
-              </label>
-
-              <div>
-                <textarea id="Field4" name="informacion" spellcheck="true" rows="6" cols="50" tabindex="4"></textarea>
-              </div>
-            </div>
-
-            <div>
-              <div>
-                <input id="saveForm" name="saveForm" type="submit" value="Confirmar" class="botonConfirmacion" />
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <script>
-    // This example creates circles on the map, representing populations in North
-    // America.
+    <script>
+      // This example creates circles on the map, representing populations in North
+      // America.
 
-    // First, create an object containing LatLng and population for each city.
-    let markers = [];
-    var map, currentMarker, geocoder;
-    let response, data;
-    let infowindows = [];
-    var citymap = [
-      {
-        name: "intec",
-        center: { lat: 18.487182, lng: -69.962732 },
-        population: 15,
-        type: 1,
-        texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
-      },
-      {
-        name: "puya",
-        center: { lat: 18.506964, lng: -69.937154 },
-        population: 12,
-        type: 3,
-        texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> atracos </b> y ocurren mayormente de <b>10:00-12:00PM</b>.</p><b>Recomendaciones:</b>No transite por estas zonas en las horas especificadas o de ser necesario ande con mas personas.<p>`
-      },
-      {
-        name: "Altos Arroyo",
-        center: { lat: 18.503544, lng: -69.964365 },
-        population: 30,
-        type: 3,
-        texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> los robos </b> y ocurren mayormente de <b>6:00-8:00PM</b>.</p><b>Recomendaciones:</b>Procure no usar prendas valiosas por esta zona.<p>`
-      },
-      {
-        name: "Lope de Vega",
-        center: { lat: 18.485393, lng: -69.932348 },
-        population: 25,
-        type: 1,
-        texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
-      },
-      {
-        name: "Viejo arroyo",
-        center: { lat: 18.495161, lng: -69.942476 },
-        population: 13,
-        type: 2,
-        texto: `<h4>Nivel de peligro: ${2}</h4><p>En esta zona la cantidad de  denuncias es <b> media </b>. Los incidentes relacionados con <b>drogas</b> estan incrementando y ocurren mayormente de <b>6:00-8:00PM</b>.</p><p><b>Recomendaciones:</b>De ser posible no transite mucho por esta zona en las horas especificadas.</p>`
-      }
-    ];
-
-    let placeMarker = (position, map, info) => {
-      var marcador = new google.maps.Marker({
-        position: position,
-        map: map,
-        infowindow: info,
-        icon: "logo.png"
-      });
-      map.panTo(position);
-      markers.push(marcador);
-      return marcador;
-    };
-
-    let geocoding = obj => {
-      geocoder.geocode({ location: obj.center }, function (results, status) {
-        if (status === "OK") {
-          if (results[0]) {
-            // map.setZoom(11);
-            // var marker = new google.maps.Marker({
-            //   position: latlng,
-            //   map: map
-            // });
-            // infowindow.setContent(results[0].formatted_address);
-            return results[0].formatted_address;
-
-            // infowindow.open(map, marker);
-          } else {
-            return "Not found";
-            // window.alert('No results found');
-          }
-        } else {
-          //window.alert('Geocoder failed due to: ' + status);
-          return "Error";
+      // First, create an object containing LatLng and population for each city.
+      let markers = [];
+      var map, currentMarker, geocoder;
+      let response, data;
+      let infowindows = [];
+      var citymap = [
+        {
+          name: "intec",
+          center: { lat: 18.487182, lng: -69.962732 },
+          population: 15,
+          type: 1,
+          texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
+        },
+        {
+          name: "puya",
+          center: { lat: 18.506964, lng: -69.937154 },
+          population: 12,
+          type: 3,
+          texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> atracos </b> y ocurren mayormente de <b>10:00-12:00PM</b>.</p><b>Recomendaciones:</b>No transite por estas zonas en las horas especificadas o de ser necesario ande con mas personas.<p>`
+        },
+        {
+          name: "Altos Arroyo",
+          center: { lat: 18.503544, lng: -69.964365 },
+          population: 30,
+          type: 3,
+          texto: `<h4>Nivel de peligro: ${3}</h4><p>En esta zona las denuncias mas reportadas estan relacionadas con <b> los robos </b> y ocurren mayormente de <b>6:00-8:00PM</b>.</p><b>Recomendaciones:</b>Procure no usar prendas valiosas por esta zona.<p>`
+        },
+        {
+          name: "Lope de Vega",
+          center: { lat: 18.485393, lng: -69.932348 },
+          population: 25,
+          type: 1,
+          texto: `<h4>Nivel de peligro: ${1}</h4><p>En esta zona la cantidad de  denuncias es <b> minima </b>.</p>`
+        },
+        {
+          name: "Viejo arroyo",
+          center: { lat: 18.495161, lng: -69.942476 },
+          population: 13,
+          type: 2,
+          texto: `<h4>Nivel de peligro: ${2}</h4><p>En esta zona la cantidad de  denuncias es <b> media </b>. Los incidentes relacionados con <b>drogas</b> estan incrementando y ocurren mayormente de <b>6:00-8:00PM</b>.</p><p><b>Recomendaciones:</b>De ser posible no transite mucho por esta zona en las horas especificadas.</p>`
         }
-      });
-    };
+      ];
 
-  let displayData = (elements) => {
-    elements.forEach(e => {
-      let fechaIncidente = e.Date.substring(0, 10), horaIncidente = e.Time.substring(e.Time.indexOf('T') + 1, e.Time.indexOf('T') + 8);
-      console.log(`fechaIncidente: ${fechaIncidente} horaIncidente: ${horaIncidente}`);
-      let contentString = `
-        <b>Hora del incidente: </b> ${horaIncidente} <br />
-        <b>Fecha del incidente: </b> ${fechaIncidente}
-      `;
-      let infowindow = new google.maps.InfoWindow({
-            content: contentString
-      });
-      infowindow.setPosition({lat: e.Longitude, lng: e.Latitude});
-      
-      infowindow.open(map);
-     
-      infowindows.push(infowindow);
-    });
-  }
-
-  let getData = async () => {
-     response = await fetch("http://localhost:8080/Unions");
-    if (!response.ok) {
-      console.log("There was an error");
-    } else {
-      data = await response.json();
-      displayData(data);
-      //console.log(JSON.stringify(data));
-    }
-  };
-  
-    function initMap() {
-      // Create the map.
-      map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 14,
-        center: { lat: 18.494184, lng: -69.944965 },
-        mapTypeId: "terrain"
-      });
-      geocoder = new google.maps.Geocoder();
-      // Construct the circle for each value in citymap.
-      // Note: We scale the area of the circle based on the population.
-      getData();
-      citymap.forEach(city => {
-        // console.log(city);
-        // console.log(`
-        //   City: ${city.name}
-        //   Address: ${geocoding(city)}
-        //   `);
-        // Add the circle for this city to the map.
-        let color = "";
-        if (city.type === 1) {
-          color = "#00FF00";
-        } else if (city.type === 2) {
-          color = "#FFFF00";
-        } else {
-          color = "#FF0000";
-        }
-        let cityCircle = new google.maps.Circle({
-          strokeColor: color,
-          strokeOpacity: 0.8,
-          strokeWeight: 2,
-          fillColor: color,
-          clickable: true,
-          fillOpacity: 0.35,
+      let placeMarker = (position, map, info) => {
+        var marcador = new google.maps.Marker({
+          position: position,
           map: map,
-          center: city.center,
-          radius: Math.sqrt(city.population) * 100,
-          texto: city.texto
+          infowindow: info,
+          icon: "logo.png"
         });
+        map.panTo(position);
+        markers.push(marcador);
+        return marcador;
+      };
 
-        google.maps.event.addListener(cityCircle, "click", function (ev) {
-          let contentString = ` <p>${this.texto}</p>`;
+      let geocoding = obj => {
+        geocoder.geocode({ location: obj.center }, function(results, status) {
+          if (status === "OK") {
+            if (results[0]) {
+              // map.setZoom(11);
+              // var marker = new google.maps.Marker({
+              //   position: latlng,
+              //   map: map
+              // });
+              // infowindow.setContent(results[0].formatted_address);
+              return results[0].formatted_address;
+
+              // infowindow.open(map, marker);
+            } else {
+              return "Not found";
+              // window.alert('No results found');
+            }
+          } else {
+            //window.alert('Geocoder failed due to: ' + status);
+            return "Error";
+          }
+        });
+      };
+
+      let displayData = elements => {
+        elements.forEach(e => {
+          let fechaIncidente = e.Date.substring(0, 10),
+            horaIncidente = e.Time.substring(
+              e.Time.indexOf("T") + 1,
+              e.Time.indexOf("T") + 8
+            ),
+            categoriaIncidente = e.Categoria;
+
+          //console.log(`fechaIncidente: ${fechaIncidente} horaIncidente: ${horaIncidente}`);
+          let contentString = `
+        <b>Hora del incidente: </b> ${horaIncidente} <br />
+        <b>Categoria del incidente: </b> ${categoriaIncidente} <br />
+        <b>Fecha del incidente: </b> ${fechaIncidente} <br />
+        <b>Descripcion: </b> ${e.Description}
+      `;
           let infowindow = new google.maps.InfoWindow({
             content: contentString
           });
-          infowindow.setPosition(ev.latLng);
-          infowindow.open(map);
-          infowindows.forEach(e => {
-            e.close();
+          infowindow.setPosition({ lat: e.Longitude, lng: e.Latitude });
+
+          let res = placeMarker(
+            { lat: e.Longitude, lng: e.Latitude },
+            map,
+            infowindow
+          );
+          google.maps.event.addListener(res, "click", function() {
+            hideAllInfoWindows(map);
+            this.infowindow.open(map, this);
           });
+
           infowindows.push(infowindow);
         });
-      });
-    };
-  </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhg38t3Ager33HbnkI7PwW80GK564F2PQ&callback=initMap"></script>
+      };
 
-  <script src="main.js"></script>
-</body>
+      let getData = async () => {
+        response = await fetch("http://localhost:8080/Unions");
+        if (!response.ok) {
+          console.log("There was an error");
+        } else {
+          data = await response.json();
+          displayData(data);
+          //console.log(JSON.stringify(data));
+        }
+      };
 
+      function initMap() {
+        // Create the map.
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: { lat: 18.494184, lng: -69.944965 },
+          mapTypeId: "terrain"
+        });
+        geocoder = new google.maps.Geocoder();
+        // Construct the circle for each value in citymap.
+        // Note: We scale the area of the circle based on the population.
+        getData();
+        citymap.forEach(city => {
+          // console.log(city);
+          // console.log(`
+          //   City: ${city.name}
+          //   Address: ${geocoding(city)}
+          //   `);
+          // Add the circle for this city to the map.
+          let color = "";
+          if (city.type === 1) {
+            color = "#00FF00";
+          } else if (city.type === 2) {
+            color = "#FFFF00";
+          } else {
+            color = "#FF0000";
+          }
+          let cityCircle = new google.maps.Circle({
+            strokeColor: color,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: color,
+            clickable: true,
+            fillOpacity: 0.35,
+            map: map,
+            center: city.center,
+            radius: Math.sqrt(city.population) * 100,
+            texto: city.texto
+          });
+
+          google.maps.event.addListener(cityCircle, "click", function(ev) {
+            let contentString = ` <p>${this.texto}</p>`;
+            let infowindow = new google.maps.InfoWindow({
+              content: contentString
+            });
+            infowindow.setPosition(ev.latLng);
+            infowindow.open(map);
+            infowindows.forEach(e => {
+              e.close();
+            });
+            infowindows.push(infowindow);
+          });
+        });
+      }
+    </script>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhg38t3Ager33HbnkI7PwW80GK564F2PQ&callback=initMap"
+    ></script>
+
+    <script src="main.js"></script>
+  </body>
 </html>
