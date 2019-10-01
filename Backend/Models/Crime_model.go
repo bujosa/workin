@@ -52,9 +52,33 @@ func (crimemodel CrimeModel) FindAll() ([]entities.Crime, error) {
 
 func (crimemodel CrimeModel) CreateCrime(CrimeN entities.Crime) (int64, error) {
 
-	result, err := crimemodel.Db.Exec("INSERT Delitos (IdCategoria,Id_Locacion,Fecha,Hora,Descripcion,Modo) values (?, ?, ?, ?, ?, ?)", 
-	CrimeN.Cat,CrimeN.Loc,CrimeN.Date,CrimeN.Time,CrimeN.Description,CrimeN.Mode)
+	var idloc int64
+	var locationmodel LocationModel
 
+	result2, err2 := locationmodel.Db.Query("select Top(1) IdLocacion from Locaciones order by IdLocacion desc")
+
+	if err2 != nil {
+		return 0, err2
+	} else {
+		
+		for result2.Next() {
+			var id             int64 
+	
+			err2 = result2.Scan(&id)
+			if err2 != nil {
+				return 0, err2
+			} else {
+				
+				idloc = id
+			}
+		}
+	
+	}
+	result, err := crimemodel.Db.Exec("INSERT Delitos (IdCategoria,Id_Locacion,Fecha,Hora,Descripcion,Modo) values (?, ?, ?, ?, ?, ?)", 
+	CrimeN.Cat,idloc,CrimeN.Date,CrimeN.Time,CrimeN.Description,CrimeN.Mode)
+
+	CrimeN.Loc = idloc;
+	
 	if err != nil {
 		return 0, err
 	} else {
