@@ -40,6 +40,8 @@ func Users(w http.ResponseWriter, r *http.Request) {
 func Unions(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
 
+	enableCors(&w)
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
