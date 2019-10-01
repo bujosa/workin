@@ -8,6 +8,8 @@ usar los siguientes comandos:
 go get -u github.com/gorilla/mux
 
 go get -u github.com/denisenkom/go-mssqldb
+
+go get -u github.com/rs/cors
 _______________________
 
 el archivo config es la conexion a la base de datos

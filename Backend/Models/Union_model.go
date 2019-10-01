@@ -1,7 +1,7 @@
 package models
 
 import (
-	"Backend/Entities"
+	entities "Backend/Entities"
 	"database/sql"
 )
 
@@ -22,26 +22,26 @@ func (unionmodel UnionModel) FindAll() ([]entities.Union, error) {
 	} else {
 		var unions []entities.Union
 		for rows.Next() {
-			var date           string 
-			var	time 		   string
-			var description    string
-			var mode	       string
-			var longitude      float64
-			var latitude	   float64
-			var iduser		   int64
+			var date string
+			var time string
+			var description string
+			var mode string
+			var longitude float64
+			var latitude float64
+			var iduser int64
 
 			err2 := rows.Scan(&date, &time, &description, &mode, &longitude, &latitude, &iduser)
 			if err2 != nil {
 				return nil, err2
 			} else {
 				union := entities.Union{
-				    Date:           date,
-					Time: 			time,
-					Description:    description,
-					Mode:       	mode,
-					Longitude:      longitude,
-					Latitude:       latitude,
-					Iduser:         iduser,
+					Date:        date,
+					Time:        time,
+					Description: description,
+					Mode:        mode,
+					Longitude:   longitude,
+					Latitude:    latitude,
+					Iduser:      iduser,
 				}
 
 				unions = append(unions, union)

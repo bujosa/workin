@@ -1,19 +1,26 @@
 package Router
 
 import (
-	"Backend/Config" // Mi conexion a base de datos
-	"Backend/Entities"
-	"Backend/Models" // Mi modelo
+	config "Backend/Config" // Mi conexion a base de datos
+	entities "Backend/Entities"
+	models "Backend/Models" // Mi modelo
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http" // El servidor privado
+
 	_ "github.com/gorilla/mux"
+	_ "github.com/rs/cors"
 )
 
+func enableCors(w *http.ResponseWriter) {
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+}
 
 func Users(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
+
+	enableCors(&w)
 
 	if err != nil {
 		fmt.Println(err)
@@ -48,9 +55,10 @@ func Unions(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
 func Crimes(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
+
+	enableCors(&w)
 
 	if err != nil {
 		fmt.Println(err)
@@ -70,6 +78,8 @@ func Crimes(w http.ResponseWriter, r *http.Request) {
 func Locations(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
 
+	enableCors(&w)
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
@@ -87,6 +97,8 @@ func Locations(w http.ResponseWriter, r *http.Request) {
 
 func Categories(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetDB()
+
+	enableCors(&w)
 
 	if err != nil {
 		fmt.Println(err)
@@ -108,122 +120,109 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func UserAdd(w http.ResponseWriter, r *http.Request) {
-	
+
+	enableCors(&w)
+
 	db, err := config.GetDB()
-	
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
-	decoder := json.NewDecoder(r.Body)
+		decoder := json.NewDecoder(r.Body)
 
-	var User entities.User
+		var User entities.User
 
-	err2 := decoder.Decode(&User)
+		err2 := decoder.Decode(&User)
 
-	if err2 != nil {
-		panic(err)
+		if err2 != nil {
+			panic(err)
+		}
+
+		defer r.Body.Close()
+
+		log.Println(User)
+
+		usermodel := models.UserModel{
+			Db: db,
+		}
+
+		result, err3 := usermodel.CreateUser(User)
+		if err3 != nil {
+			panic(err3)
+		}
+		log.Println(result) // Con el result se puede confirmar
+		// si añadio el usuario correctamente
 	}
-
-	defer r.Body.Close()
-
-	log.Println(User)
-
-	usermodel := models.UserModel{
-		Db: db,
-	}
-
-	result,err3 := usermodel.CreateUser(User)
-	if err3 != nil {
-		panic(err3)
-	}
-	log.Println(result) // Con el result se puede confirmar 
-	// si añadio el usuario correctamente
-  }
 }
 
 func LocationAdd(w http.ResponseWriter, r *http.Request) {
-	
+
 	db, err := config.GetDB()
-	
+
+	enableCors(&w)
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
-	decoder := json.NewDecoder(r.Body)
+		decoder := json.NewDecoder(r.Body)
 
-	var Location entities.Location
+		var Location entities.Location
 
-	err2 := decoder.Decode(&Location)
+		err2 := decoder.Decode(&Location)
 
-	if err2 != nil {
-		panic(err)
+		if err2 != nil {
+			panic(err)
+		}
+
+		defer r.Body.Close()
+
+		log.Println(Location)
+
+		locationmodel := models.LocationModel{
+			Db: db,
+		}
+
+		result, err3 := locationmodel.CreateLocation(Location)
+		if err3 != nil {
+			panic(err3)
+		}
+		log.Println(result) // Con el result se puede confirmar
+		// si añadio el usuario correctamente
 	}
-
-	defer r.Body.Close()
-
-	log.Println(Location)
-
-	locationmodel := models.LocationModel{
-		Db: db,
-	}
-
-	result,err3 := locationmodel.CreateLocation(Location)
-	if err3 != nil {
-		panic(err3)
-	}
-	log.Println(result) // Con el result se puede confirmar 
-	// si añadio el usuario correctamente
-  }
 }
 
 func CrimeAdd(w http.ResponseWriter, r *http.Request) {
-	
+
 	db, err := config.GetDB()
-	
+
+	enableCors(&w)
+
 	if err != nil {
 		fmt.Println(err)
 	} else {
-	decoder := json.NewDecoder(r.Body)
+		decoder := json.NewDecoder(r.Body)
 
-	var Crime entities.Crime
+		var Crime entities.Crime
 
-	err2 := decoder.Decode(&Crime)
+		err2 := decoder.Decode(&Crime)
 
-	if err2 != nil {
-		panic(err)
+		if err2 != nil {
+			panic(err)
+		}
+
+		defer r.Body.Close()
+
+		log.Println(Crime)
+
+		crimemodel := models.CrimeModel{
+			Db: db,
+		}
+
+		result, err3 := crimemodel.CreateCrime(Crime)
+		if err3 != nil {
+			panic(err3)
+		}
+		log.Println(result) // Con el result se puede confirmar
+		// si añadio el usuario correctamente
 	}
-
-	defer r.Body.Close()
-
-	log.Println(Crime)
-
-	crimemodel := models.CrimeModel{
-		Db: db,
-	}
-
-	result,err3 := crimemodel.CreateCrime(Crime)
-	if err3 != nil {
-		panic(err3)
-	}
-	log.Println(result) // Con el result se puede confirmar 
-	// si añadio el usuario correctamente
-  }
 }
-
-/*
-func ProductsAdd(w http.ResponseWriter, r *http.Request) {
-	decoder := json.NewDecoder(r.Body)
-
-	var Producto entities.Product
-
-	err := decoder.Decode(&Producto)
-
-	if err != nil {
-		panic(err)
-	}
-
-	defer r.Body.Close()
-
-	log.Println(Producto)
-
-	products = append(products, Producto)
-}*/

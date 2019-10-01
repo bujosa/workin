@@ -16,26 +16,3 @@ func main() {
 
 }
 
-
-/*
-func View() {
-	db, err := config.GetDB()
-
-	if err != nil {
-		fmt.Println(err)
-	} else {
-		productModel := models.ProductModel{
-			Db: db,
-		}
-		products, err2 := productModel.FindAll()
-		if err2 != nil {
-			fmt.Println(err2)
-		} else {
-			for _, product := range products {
-				fmt.Println(product.ToString())
-				fmt.Println("------------------------")
-			}
-		}
-	}
-}
-*/
