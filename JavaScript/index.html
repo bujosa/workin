@@ -13,7 +13,7 @@
     <div class="contenedor">
       <nav>
         <img src="fondo.png" alt="Logo Pagina" width="250" height="60" />
-        <button id="loginPopup">Login with Popup</button>
+        <button id="loginPopup">Login</button>
       </nav>
       <div id="map"></div>
 
@@ -65,6 +65,72 @@
                         tabindex="7"
                       />
                       <label class="choice" for="Field5_2">Asalto</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div>
+                <fieldset>
+                  <legend id="title5" class="desc">
+                    Modo del atraco
+                  </legend>
+
+                  <div>
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="modo"
+                        type="radio"
+                        value="Pasola"
+                        tabindex="5"
+                        checked
+                        required
+                      />
+                      <label class="choice" for="Field5_0">Pasola</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_0"
+                        name="modo"
+                        type="radio"
+                        value="Persona"
+                        tabindex="5"
+                        checked
+                        required
+                      />
+                      <label class="choice" for="Field5_0">Persona</label>
+                    </div>
+
+                    <div>
+                      <input
+                        id="Field5_1"
+                        name="modo"
+                        type="radio"
+                        value="Carro"
+                        tabindex="6"
+                      />
+                      <label class="choice" for="Field5_1">Carro</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_2"
+                        name="modo"
+                        type="radio"
+                        value="Motor"
+                        tabindex="7"
+                      />
+                      <label class="choice" for="Field5_2">Motor</label>
+                    </div>
+                    <div>
+                      <input
+                        id="Field5_1"
+                        name="modo"
+                        type="radio"
+                        value="Carro publico"
+                        tabindex="6"
+                      />
+                      <label class="choice" for="Field5_1">Carro publico</label>
                     </div>
                   </div>
                 </fieldset>
@@ -216,7 +282,9 @@
       // First, create an object containing LatLng and population for each city.
       let markers = [];
       var map, currentMarker, geocoder;
-      let response, data;
+      let response,
+        data,
+        user = null;
       let infowindows = [];
       var citymap = [
         {
@@ -267,7 +335,7 @@
           .addEventListener("click", async () => {
             console.log("Button was clicked");
             await auth0.loginWithPopup();
-            const user = await auth0.getUser();
+            user = await auth0.getUser();
             console.log(user);
           });
       })();
@@ -288,21 +356,11 @@
         geocoder.geocode({ location: obj.center }, function(results, status) {
           if (status === "OK") {
             if (results[0]) {
-              // map.setZoom(11);
-              // var marker = new google.maps.Marker({
-              //   position: latlng,
-              //   map: map
-              // });
-              // infowindow.setContent(results[0].formatted_address);
               return results[0].formatted_address;
-
-              // infowindow.open(map, marker);
             } else {
               return "Not found";
-              // window.alert('No results found');
             }
           } else {
-            //window.alert('Geocoder failed due to: ' + status);
             return "Error";
           }
         });
@@ -317,7 +375,6 @@
             ),
             categoriaIncidente = e.Categoria;
 
-          //console.log(`fechaIncidente: ${fechaIncidente} horaIncidente: ${horaIncidente}`);
           let contentString = `
         <b>Hora del incidente: </b> ${horaIncidente} <br />
         <b>Categoria del incidente: </b> ${categoriaIncidente} <br />
@@ -350,7 +407,6 @@
         } else {
           data = await response.json();
           displayData(data);
-          //console.log(JSON.stringify(data));
         }
       };
 

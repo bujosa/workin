@@ -43,7 +43,13 @@ let hideAllInfoWindows = map => {
 };
 
 // Open
-let openModal = () => (modal.style.display = "block");
+let openModal = () => {
+  if (user == null) {
+    alert("Usuario no logeado");
+  } else {
+    modal.style.display = "block";
+  }
+};
 
 // Close
 let closeModal = () => (modal.style.display = "none");
@@ -61,7 +67,6 @@ closeBtn.addEventListener("click", closeModal);
 window.addEventListener("click", outsideClick);
 
 // Prevent Form refresh
-
 saveBtn.addEventListener("click", e => {
   e.preventDefault();
   categoriaIncidente = Array.from(
@@ -70,20 +75,22 @@ saveBtn.addEventListener("click", e => {
   horaIncidente = document.querySelector('[type="time"]').value;
   fechaIncidente = document.querySelector('[type="date"]').value;
   descripcion = document.getElementById("textoDescripcion").value;
-  // modoDelincuente = Array.from(
-  //   document.querySelectorAll('[name="modo"]')
-  // ).filter(e => e.checked)[0].value;
-  modoDelincuente = "pasola";
+  modoDelincuente = Array.from(
+    document.querySelectorAll('[name="modo"]')
+  ).filter(e => e.checked)[0].value;
   contentString = `
   <b>Hora del incidente: </b> ${horaIncidente} <br />
   <b>Categoria de incidente: </b> ${categoriaIncidente} <br />
   <b>Fecha del incidente: </b> ${fechaIncidente} <br />
   <b>Descripcion: </br> ${descripcion}
   `;
+  if (categoriaIncidente == "Robo") categoriaIncidente = 2;
+  else if (categoriaIncidente == "Homicidio") categoriaIncidente = 3;
+  else categoriaIncidente = 1;
   let crimeData = {
     Id: 1,
-    Loc: 123.354,
     Cat: categoriaIncidente,
+    Loc: 12,
     Date: fechaIncidente,
     Time: horaIncidente,
     Description: descripcion,
@@ -96,11 +103,10 @@ saveBtn.addEventListener("click", e => {
   });
 
   map.addListener("click", function(e) {
-    //console.log(`Latitud: ${e.latLng.lat()}, Longitud: ${e.latLng.lng()}`);
     postLocationData({
       User: 2,
-      Latitude: e.latLng.lat(),
-      Longitude: e.latLng.lng()
+      Latitude: e.latLng.lng(),
+      Longitude: e.latLng.lat()
     });
     let res = placeMarker(e.latLng, map, infowindow);
     google.maps.event.addListener(res, "click", function() {
@@ -111,7 +117,6 @@ saveBtn.addEventListener("click", e => {
     google.maps.event.clearInstanceListeners(map);
 
     let entradas = Array.from(document.querySelectorAll("input"));
-    debugger;
     entradas.forEach(i => {
       if (i.type === "radio") i.checked = false;
       else {
