@@ -45,6 +45,12 @@ var routes = Routes{
 		UserAdd,
 	},
 	Route{
+		"UserDelete",
+		"POST",
+		"/UserDelete",
+		DeleteUser,
+	},
+	Route{
 		"Crimes",
 		"GET",
 		"/Crimes",
@@ -55,6 +61,18 @@ var routes = Routes{
 		"POST",
 		"/CrimeAdd",
 		CrimeAdd,
+	},
+	Route{
+		"CrimeDelete",
+		"POST",
+		"/CrimeDelete",
+		DeleteCrime,
+	},
+	Route{
+		"CrimeUpdate",
+		"POST",
+		"/CrimeUpdate",
+		UpdateCrime,
 	},
 	Route{
 		"Locations",
@@ -73,6 +91,24 @@ var routes = Routes{
 		"GET",
 		"/Categories",
 		Categories,
+	},
+	Route{
+		"CategoryAdd",
+		"POST",
+		"/CategoryAdd",
+		CategoryAdd,
+	},
+	Route{
+		"CategoryUpdate",
+		"POST",
+		"/CategoryUpdate",
+		UpdateCategory,
+	},
+	Route{
+		"CategoryDelete",
+		"POST",
+		"/CategoryDelete",
+		DeleteCategory,
 	},
 	Route{
 		"Unions",

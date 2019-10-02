@@ -4,7 +4,6 @@ import (
 	
 	"Backend/Entities"
 	"database/sql"
-	"log"
 )
 
 type CrimeModel struct {
@@ -67,7 +66,6 @@ func (crimemodel CrimeModel) CreateCrime(CrimeN entities.Crime) (int64, error) {
 	
 			err2 = result2.Scan(&id)
 			if err2 != nil {
-				log.Fatal("paso por aqui")
 				return 0, err2
 			} else {
 				
@@ -83,7 +81,39 @@ func (crimemodel CrimeModel) CreateCrime(CrimeN entities.Crime) (int64, error) {
 	CrimeN.Loc = idloc;
 	
 	if err != nil {
-		log.Fatal("Llego hasta aca")
+		return 0, err
+	} else {
+		CrimeN.Id,_ = result.LastInsertId() 
+		crimes = append(crimes, CrimeN)
+		rowsAffected, _ := result.RowsAffected()
+		return rowsAffected, nil
+		}
+		
+}
+
+func (crimemodel CrimeModel) UpdateCrime(CrimeN entities.Crime) (int64, error) {
+
+	
+	result, err := crimemodel.Db.Exec("Update Delitos set IdCategoria = ?, Fecha = ?, Date = ?, Description = ?, Modo = ? where IdDelitos = ?", 
+	CrimeN.Cat, CrimeN.Date,CrimeN.Time,CrimeN.Description,CrimeN.Mode, CrimeN.Id)
+	
+	if err != nil {
+		return 0, err
+	} else {
+		CrimeN.Id,_ = result.LastInsertId() 
+		crimes = append(crimes, CrimeN)
+		rowsAffected, _ := result.RowsAffected()
+		return rowsAffected, nil
+		}
+		
+}
+
+
+func (crimemodel CrimeModel) DeleteCrime(CrimeN entities.Crime) (int64, error) {
+
+	result, err := crimemodel.Db.Exec("delete from Delitos where IdDelitos = ?", CrimeN.Id)
+	
+	if err != nil {
 		return 0, err
 	} else {
 		CrimeN.Id,_ = result.LastInsertId() 

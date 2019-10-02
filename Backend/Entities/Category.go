@@ -5,12 +5,13 @@ import (
 )
 
 type Category struct {
+	Id int64
 	Categorie string
 }
 
 type Categories []Category
 
 func (category Category) ToString() string {
-	return fmt.Sprintf("Categorie: %s",
-		category.Categorie)
+	return fmt.Sprintf("Id: %d\nCategorie: %s",
+		category.Id ,category.Categorie)
 }

@@ -91,3 +91,17 @@ func (usermodel UserModel) FindAll() ([]entities.User, error) {
 	}
 
 }
+
+// Eliminar usuarios
+func (usermodel UserModel) DeleteUser(user entities.User) (int64, error) {
+
+	result, err := usermodel.Db.Exec("delete from Usuarios where Email = ?",user.Email)
+	if err != nil {
+		return 0, err
+	} else {
+		rowsAffected, _ := result.RowsAffected()
+		return rowsAffected, nil
+	}
+
+}
+
