@@ -33,7 +33,7 @@
                     Categoria de denuncia que va a realizar
                   </legend>
 
-                  <div>
+                  <div class="answerContainer">
                     <div>
                       <input
                         id="Field5_0"
@@ -76,7 +76,7 @@
                     Modo del atraco
                   </legend>
 
-                  <div>
+                  <div class="answerContainer">
                     <div>
                       <input
                         id="Field5_0"
@@ -142,7 +142,7 @@
                     ¿La zona por la que transitaba estaba iluminada?
                   </legend>
 
-                  <div>
+                  <div class="answerContainer">
                     <input
                       id="radioDefault_5"
                       name="zona"
@@ -180,7 +180,7 @@
                     ¿De que manera usted se desplazaba?
                   </legend>
 
-                  <div>
+                  <div class="answerContainer">
                     <input
                       id="radioDefault_5"
                       name="desplazamiento"
@@ -333,10 +333,10 @@
         document
           .getElementById("loginPopup")
           .addEventListener("click", async () => {
-            console.log("Button was clicked");
             await auth0.loginWithPopup();
             user = await auth0.getUser();
             console.log(user);
+            alert("Usuario ha sido autenticado");
           });
       })();
 
@@ -422,11 +422,6 @@
         // Note: We scale the area of the circle based on the population.
         getData();
         citymap.forEach(city => {
-          // console.log(city);
-          // console.log(`
-          //   City: ${city.name}
-          //   Address: ${geocoding(city)}
-          //   `);
           // Add the circle for this city to the map.
           let color = "";
           if (city.type === 1) {
