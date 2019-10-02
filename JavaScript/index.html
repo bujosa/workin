@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Prueba de Google Maps</title>
+    <title>En Zona RD</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="form.css" />
   </head>
@@ -350,20 +350,6 @@
         map.panTo(position);
         markers.push(marcador);
         return marcador;
-      };
-
-      let geocoding = obj => {
-        geocoder.geocode({ location: obj.center }, function(results, status) {
-          if (status === "OK") {
-            if (results[0]) {
-              return results[0].formatted_address;
-            } else {
-              return "Not found";
-            }
-          } else {
-            return "Error";
-          }
-        });
       };
 
       let displayData = elements => {
